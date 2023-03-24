@@ -1,0 +1,7 @@
+**/.env
+datarepo/**
+ctp/**
+parabank/parabank
+parabank/monitor
+soavirt/**
+*backup*

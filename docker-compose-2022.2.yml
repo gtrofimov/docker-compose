@@ -1,0 +1,100 @@
+version: "3.9"
+services:
+  ctp:
+    image: parasoft/ctp:2022.2
+    hostname: ctp
+    container_name: ctp
+    extra_hosts:
+      - "host.internal.docker:host-gateway"
+    networks:
+      - demo-net
+    ports:
+      - 8080:8080
+    environment:
+      ACCEPT_EULA: true
+      LICENSE_SERVER_URL: "${ls_url}"
+      LICENSE_SERVER_AUTH_ENABLED: true
+      LICENSE_SERVER_USERNAME: "${ls_user}"
+      LICENSE_SERVER_PASSWORD: "${ls_pass}"
+      USAGE_DATA: false
+    volumes:
+      - type: volume
+        source: hsqldb
+        target: /usr/local/parasoft/ctp/hsqldb
+      - type: volume
+        source: exports
+        target: /usr/local/parasoft/exports
+  soavirt-server:
+    image: parasoft/soavirt-server:2022.2
+    container_name: soavirt-server
+    hostname: soavirt-server
+    extra_hosts:
+      - "host.internal.docker:host-gateway"
+    networks:
+      - demo-net
+    ports:
+      - 9080:9080
+      - 9617:9617
+      - 9618:9618
+      - 9090-9099:9090-9099
+    environment:
+      ACCEPT_EULA: "true"
+      HTTP_PORT: 9080
+      EVENTS_PORT: 9617
+      STATISTICS_PORT: 9618
+    volumes:
+      - type: volume
+        source: workspace
+        target: /usr/local/parasoft/soavirt/webapps/ROOT/workspace
+      - type: bind
+        source: ./soavirt/config.properties
+        target: /usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties
+  datarepo:
+    image: parasoft/datarepo:3.6
+    container_name: datarepo
+    hostname: datarepo
+    extra_hosts:
+      - "host.internal.docker:host-gateway"
+    networks:
+      - demo-net
+    ports:
+      - "2424:2424"
+    volumes:
+      - type: bind
+        source: ./datarepo/repositories
+        target: /usr/local/parasoft/datarepo/repositories
+  parabank:
+    image: parabank:baseline
+    container_name: parabank
+    hostname: parabank
+    extra_hosts:
+      - "host.internal.docker:host-gateway"
+    networks:
+      - demo-net
+    ports:
+      - 8090:8080
+      - 4040:4040
+      - 9001:9001
+      - 61616:61616
+      - 8050:8050
+    volumes:
+      - type: bind
+        source: ./parabank/jdbc.properties
+        target: /usr/local/tomcat/webapps/parabank/WEB-INF/classes/jdbc.properties
+      - type: bind
+        source: ./parabank/setenv.sh
+        target: /usr/local/tomcat/bin/setenv.sh
+volumes:
+  hsqldb:
+    external: true
+    name: hsqldb
+  exports:
+    external: true
+    name: exports
+  workspace:
+    external: true
+    name: workspace
+networks:
+  demo-net:
+    external: true
+    name: demo-net
