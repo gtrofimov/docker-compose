@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   ctp:
-    image: parasoft/ctp:2022.2.1
+    image: parasoft/ctp:2023.1
     hostname: ctp
     container_name: ctp
     extra_hosts:
@@ -25,7 +25,7 @@ services:
         source: exports
         target: /usr/local/parasoft/exports
   soavirt-server:
-    image: parasoft/soavirt-server:2022.2.1
+    image: parasoft/soavirt-server:2023.1
     container_name: soavirt-server
     hostname: soavirt-server
     depends_on:
