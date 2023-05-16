@@ -44,6 +44,8 @@ services:
       HTTP_PORT: 9080
       EVENTS_PORT: 9617
       STATISTICS_PORT: 9618
+    env_file:
+      - ./soavirt/catalina.env
     volumes:
       - type: volume
         source: workspace
