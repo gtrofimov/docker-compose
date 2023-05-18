@@ -78,8 +78,10 @@ The following demos are availble and preconfigured on this demo VM
 * ncdu: https://www.cyberciti.biz/open-source/install-ncdu-on-linux-unix-ncurses-disk-usage/
 
 ## Cangelog
-- 5/15/23
+- 5/17/23
     + Upgrade ctp/soairt from 2022.2.1 to 2023.1
+    + update PSTSec to use PSTSecConfig.xml
+    + Convert volume mount to bind mounts
 - 3/23/23
     + Add CAM on port 6080
 - 2/15/23
