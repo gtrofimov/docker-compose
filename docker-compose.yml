@@ -18,12 +18,15 @@ services:
       LICENSE_SERVER_PASSWORD: "${ls_pass}"
       USAGE_DATA: false
     volumes:
-      - type: volume
-        source: hsqldb
+      - type: bind
+        source: ctp/hsqldb
         target: /usr/local/parasoft/ctp/hsqldb
-      - type: volume
-        source: exports
+      - type: bind
+        source: ctp/exports
         target: /usr/local/parasoft/exports
+      - type: bind
+        source: ctp/PSTSecConfig.xml
+        target: /usr/local/parasoft/ctp/webapps/em/config/PSTSecConfig.xml
   soavirt-server:
     image: parasoft/soavirt-server:2023.1
     container_name: soavirt-server
@@ -47,11 +50,11 @@ services:
     env_file:
       - ./soavirt/catalina.env
     volumes:
-      - type: volume
-        source: workspace
+      - type: bind
+        source: soavirt/workspace
         target: /usr/local/parasoft/soavirt/webapps/ROOT/workspace
       - type: bind
-        source: ./soavirt/config.properties
+        source: soavirt/config.properties
         target: /usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties
   datarepo:
     image: parasoft/datarepo:3.6.1
@@ -72,7 +75,7 @@ services:
       ALIAS: ${dr_alias}
     volumes:
       - type: bind
-        source: ./datarepo/repositories
+        source: datarepo/repositories
         target: /usr/local/parasoft/datarepo/repositories
   parabank:
     image: parasoft/parabank
@@ -92,13 +95,13 @@ services:
       - ./parabank/catalina.env
     volumes:
       - type: bind
-        source: ./parabank/jdbc/jdbc.properties
+        source: parabank/jdbc/jdbc.properties
         target: /usr/local/tomcat/webapps/parabank/WEB-INF/classes/jdbc.properties
       - type: bind
-        source: ./parabank/jdbc/ParasoftJDBCDriver.jar
+        source: parabank/jdbc/ParasoftJDBCDriver.jar
         target: /usr/local/tomcat/webapps/parabank/WEB-INF/lib/ParasoftJDBCDriver.jar
       - type: bind
-        source: ./parabank/monitor
+        source: parabank/monitor
         target: /home/docker/jtest/monitor
   parabankv2:
     image: parasoft/parabank:feature
@@ -128,7 +131,7 @@ services:
       - 61624:62624
       - 61626:61626
   cam:
-    build: ./cam
+    build: cam
     image: parasoft/cam:latest
     container_name: cam
     hostname: cam
@@ -138,19 +141,6 @@ services:
       - demo-net
     ports:
       - 6080:8080
-volumes:
-  hsqldb:
-    external: true
-    name: hsqldb
-  exports:
-    external: true
-    name: exports
-  workspace:
-    external: true
-    name: workspace
-  parabank:
-    external: true
-    name: parabank
 networks:
   demo-net:
     external: true
