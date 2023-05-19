@@ -82,6 +82,7 @@ The following demos are availble and preconfigured on this demo VM
     + Upgrade ctp/soairt from 2022.2.1 to 2023.1
     + update PSTSec to use PSTSecConfig.xml
     + Convert volume mount to bind mounts
+    + Re-upload snapshots for some reason to fix Snadbox flow
 - 3/23/23
     + Add CAM on port 6080
 - 2/15/23
