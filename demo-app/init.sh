@@ -2,7 +2,7 @@
 
 # Initialize Demo App
 
-curl -X PUT "http://18.237.166.164:4040/v1/demoAdmin/preferences" \
+curl -X PUT "http://localhost:4040/v1/demoAdmin/preferences" \
 -H "accept: application/json" -H "Content-Type: application/json" \
 -u purchaser:password \
 -d '{

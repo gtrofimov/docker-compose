@@ -78,6 +78,14 @@ The following demos are availble and preconfigured on this demo VM
 * ncdu: https://www.cyberciti.biz/open-source/install-ncdu-on-linux-unix-ncurses-disk-usage/
 
 ## Cangelog
+- 10/18/23
+    + 2023.2 update
+    + remove CAM
+    + fix Demo App proxy
+        - Demo App Learning Mode Demo?
+- 8/30/23
+    + fixed a typo in the docker compose file for 'host.docker.internal'
+    + smaller tomcat jre flavor for CAM dockerfile.
 - 5/17/23
     + Upgrade ctp/soairt from 2022.2.1 to 2023.1
     + update PSTSec to use PSTSecConfig.xml

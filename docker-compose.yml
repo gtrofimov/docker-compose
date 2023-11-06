@@ -1,15 +1,17 @@
 version: "3.9"
 services:
   ctp:
-    image: parasoft/ctp:2023.1
+    image: parasoft/ctp:2023.2
+    restart: unless-stopped
     hostname: ctp
     container_name: ctp
     extra_hosts:
-      - "host.internal.docker:host-gateway"
+      - "host.docker.internal:host-gateway"
     networks:
       - demo-net
     ports:
       - 8080:8080
+      - 9009:9002
     environment:
       ACCEPT_EULA: true
       LICENSE_SERVER_URL: "${ls_url}"
@@ -28,13 +30,14 @@ services:
         source: ctp/PSTSecConfig.xml
         target: /usr/local/parasoft/ctp/webapps/em/config/PSTSecConfig.xml
   soavirt-server:
-    image: parasoft/soavirt-server:2023.1
+    image: parasoft/soavirt-server:2023.2
+    restart: unless-stopped
     container_name: soavirt-server
     hostname: soavirt-server
     depends_on:
       - ctp
     extra_hosts:
-      - "host.internal.docker:host-gateway"
+      - "host.docker.internal:host-gateway"
     networks:
       - demo-net
     ports:
@@ -58,10 +61,11 @@ services:
         target: /usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties
   datarepo:
     image: parasoft/datarepo:3.6.1
+    restart: unless-stopped
     container_name: datarepo
     hostname: datarepo
     extra_hosts:
-      - "host.internal.docker:host-gateway"
+      - "host.docker.internal:host-gateway"
     networks:
       - demo-net
     ports:
@@ -79,11 +83,12 @@ services:
         target: /usr/local/parasoft/datarepo/repositories
   parabank:
     image: parasoft/parabank
+    restart: unless-stopped
     container_name: parabank
     hostname: parabank
     user: 0:0
     extra_hosts:
-      - "host.internal.docker:host-gateway"
+      - "host.docker.internal:host-gateway"
     networks:
       - demo-net
     ports:
@@ -105,10 +110,11 @@ services:
         target: /home/docker/jtest/monitor
   parabankv2:
     image: parasoft/parabank:feature
+    restart: unless-stopped
     container_name: parabankv2
     hostname: parabankv2
     extra_hosts:
-      - "host.internal.docker:host-gateway"
+      - "host.docker.internal:host-gateway"
     networks:
       - demo-net
     ports:
@@ -117,10 +123,11 @@ services:
       - 61617:61616
   demo-app:
     image: parasoft/demo-app
+    restart: unless-stopped
     container_name: demo-app
     hostname: demo-app
     extra_hosts:
-      - "host.internal.docker:host-gateway"
+      - "host.docker.internal:host-gateway"
     networks:
       - demo-net
     ports:
@@ -130,17 +137,6 @@ services:
       - 61623:61623
       - 61624:62624
       - 61626:61626
-  cam:
-    build: cam
-    image: parasoft/cam:latest
-    container_name: cam
-    hostname: cam
-    extra_hosts:
-      - "host.internal.docker:host-gateway"
-    networks:
-      - demo-net
-    ports:
-      - 6080:8080
 networks:
   demo-net:
     external: true

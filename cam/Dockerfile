@@ -1,5 +1,4 @@
-FROM tomcat:8.5.87-jre8
-
+FROM tomcat:8.5-jre8-temurin
 LABEL maintainer="gtrofimov@parasoft.com"
 LABEL cam_version="1.2.1"
 

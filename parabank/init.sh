@@ -5,14 +5,14 @@ curl \
 -X POST \
 --header "Content-Type: application/json" \
 --header "Accept: application/json" \
---raw  "http://localhost:8090/parabank/services/bank/initializeDB" >> /home/ec2-user/startup.log
+--raw  "http://localhost:8090/parabank/services/bank/initializeDB" >> /home/ec2-user/parabank-startup.log
 
 # Initialize DB for Parabank feature
 curl \
 -X POST \
 --header "Content-Type: application/json" \
 --header "Accept: application/json" \
---raw  "http://localhost:8091/parabank/services/bank/initializeDB" >> /home/ec2-user/startup.log
+--raw  "http://localhost:8091/parabank/services/bank/initializeDB" >> /home/ec2-user/parabank-startup.log
 
 # Get cookie
 curl --cookie-jar tmp.txt -iv --raw "http://localhost:8090/parabank/admin.htm"
@@ -34,7 +34,7 @@ curl \
 --data-urlencode "loanProvider=ws" \
 --data-urlencode "loanProcessor=funds" \
 --data-urlencode "loanProcessorThreshold=20" \
--iv --raw  "http://localhost:8090/parabank/admin.htm" >> /home/ec2-user/startup.log
+-iv --raw  "http://localhost:8090/parabank/admin.htm" >> /home/ec2-user/parabank-startup.log
 
 #Clean Up
 rm -f tmp.txt
