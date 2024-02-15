@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   ctp:
-    image: parasoft/ctp:2023.2.1
+    image: parasoft/ctp:latest
     restart: unless-stopped
     hostname: ctp
     container_name: ctp
@@ -11,7 +11,7 @@ services:
       - demo-net
     ports:
       - 8080:8080
-    #  - 9009:9002 //HSQL
+      - # 9009:9002 //HSQL
     environment:
       ACCEPT_EULA: true
       LICENSE_SERVER_URL: "${ls_url}"
@@ -30,7 +30,7 @@ services:
         source: ctp/PSTSecConfig.xml
         target: /usr/local/parasoft/ctp/webapps/em/config/PSTSecConfig.xml
   soavirt-server:
-    image: parasoft/soavirt-server:2023.2.1
+    image: parasoft/soavirt-server:latest
     restart: unless-stopped
     container_name: soavirt-server
     hostname: soavirt-server
