@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   ctp:
-    image: parasoft/ctp:2023.2.1
+    image: parasoft/ctp:latest
     restart: unless-stopped
     hostname: ctp
     container_name: ctp
@@ -30,7 +30,7 @@ services:
         source: ctp/PSTSecConfig.xml
         target: /usr/local/parasoft/ctp/webapps/em/config/PSTSecConfig.xml
   soavirt-server:
-    image: parasoft/soavirt-server:2023.2.1
+    image: parasoft/soavirt-server:latest
     restart: unless-stopped
     container_name: soavirt-server
     hostname: soavirt-server
@@ -60,7 +60,7 @@ services:
         source: soavirt/config.properties
         target: /usr/local/parasoft/soavirt/webapps/ROOT/WEB-INF/config.properties
   datarepo:
-    image: parasoft/datarepo:3.6.1
+    image: parasoft/datarepo:latest
     restart: unless-stopped
     container_name: datarepo
     hostname: datarepo
@@ -82,7 +82,7 @@ services:
         source: datarepo/repositories
         target: /usr/local/parasoft/datarepo/repositories
   parabank:
-    image: parasoft/parabank
+    image: parasoft/parabank:latest
     restart: unless-stopped
     container_name: parabank
     hostname: parabank
