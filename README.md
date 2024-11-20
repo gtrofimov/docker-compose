@@ -77,7 +77,17 @@ The following demos are availble and preconfigured on this demo VM
 * minikube: https://minikube.sigs.k8s.io/docs/start/
 * ncdu: https://www.cyberciti.biz/open-source/install-ncdu-on-linux-unix-ncurses-disk-usage/
 
-## Cangelog
+## Changelog
+- 11/08/24
+    + Added Parabank Learning Mode workflow to CTP/EM & Virtualize Server
+    + Modified Parabank init.sh to include REST Endpoint for Virtualize proxy
+    + Consolidated Loan Processor workflow with CRUD workflow to support REST Endpoint, all working through the Retail Component, the Loan Processor Component is now just for show.  
+        - Added two PVAs to show working & broken versions of Loan Processor while also being able to use the environment for Leaning Mode demos
+        - Left old PVAs in Virtualize workspace just in case
+        - Left old proxies in Virtualize workspace just in case
+        - Removed Health Check from Loan Processor Component Instance
+    + Added Parabank_CRUD.pva to Virtualize Server (kept old Parabank-CRUD.pva but no longer used in EM)
+    + Added Data Reset and Data Generation TSTs to SOAtest Server, added Jobs to run them from CTP
 - 10/18/23
     + 2023.2 update
     + remove CAM

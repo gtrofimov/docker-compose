@@ -1,4 +1,4 @@
-version: "3.9"
+# version: "3.9"
 services:
   ctp:
     image: parasoft/ctp:latest
@@ -11,14 +11,16 @@ services:
       - demo-net
     ports:
       - 8080:8080
-    #  - 9009:9002 //HSQL
+      - 8443:8443
+      - 9009:9002
     environment:
       ACCEPT_EULA: true
       LICENSE_SERVER_URL: "${ls_url}"
       LICENSE_SERVER_AUTH_ENABLED: true
       LICENSE_SERVER_USERNAME: "${ls_user}"
       LICENSE_SERVER_PASSWORD: "${ls_pass}"
-      USAGE_DATA: false
+      USAGE_DATA: false      
+      #CATALINA_OPTS: "-Djavax.net.debug=ssl:handshake"
     volumes:
       - type: bind
         source: ctp/hsqldb
@@ -42,6 +44,7 @@ services:
       - demo-net
     ports:
       - 9080:9080
+      - 9443:9443
       - 9617:9617
       - 9618:9618
       - 9090-9099:9090-9099
@@ -119,10 +122,10 @@ services:
       - demo-net
     ports:
       - 8091:8080
-      - 9002:9001
+      - 9004:9001
       - 61617:61616
   demo-app:
-    image: parasoft/demo-app
+    image: parasoft/demo-app:latest
     restart: unless-stopped
     container_name: demo-app
     hostname: demo-app
