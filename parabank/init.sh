@@ -27,7 +27,7 @@ curl \
 --cookie tmp.txt \
 --data-urlencode "accessMode=restjson" \
 --data-urlencode "soapEndpoint=http://soavirt-server:9080/ParabankProxy" \
---data-urlencode "restEndpoint=http://soavirt-server:9080/ProxyBank_Learn" \
+--data-urlencode "restEndpoint=http://soavirt-server:9080/ParabankLearn" \
 --data-urlencode "endpoint=http://soavirt-server:9080/LoanProcessorProxy" \
 --data-urlencode "initialBalance=2000" \
 --data-urlencode "minimumBalance=100" \

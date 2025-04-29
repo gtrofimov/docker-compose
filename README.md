@@ -78,7 +78,18 @@ The following demos are availble and preconfigured on this demo VM
 * ncdu: https://www.cyberciti.biz/open-source/install-ncdu-on-linux-unix-ncurses-disk-usage/
 
 ## Changelog
+<<<<<<< HEAD
 - 11/08/24
+=======
+- 4/29/25
+    + added LTC
+    + upgraded to 2025.1
+- 1/8/24
+    + removed agent.jar and replaced with custom Dockerfile per: https://parasoft-tech.atlassian.net/wiki/external/ODZhZWI0Mzg5ZTZjNDRlZTg4ZDVkY2RiMGJkOTcwYTk
+    + removed unnecessary Loan Processor assets
+    + renamed ProxyBank_Learn -> ParabankLearn and updated relevant paths
+- 11/8/24
+>>>>>>> 21c951f (updates)
     + Added Parabank Learning Mode workflow to CTP/EM & Virtualize Server
     + Modified Parabank init.sh to include REST Endpoint for Virtualize proxy
     + Consolidated Loan Processor workflow with CRUD workflow to support REST Endpoint, all working through the Retail Component, the Loan Processor Component is now just for show.  
@@ -97,15 +108,15 @@ The following demos are availble and preconfigured on this demo VM
     + fixed a typo in the docker compose file for 'host.docker.internal'
     + smaller tomcat jre flavor for CAM dockerfile.
 - 5/17/23
-    + Upgrade ctp/soairt from 2022.2.1 to 2023.1
+    + Upgrade ctp/soavirt from 2022.2.1 to 2023.1
     + update PSTSec to use PSTSecConfig.xml
     + Convert volume mount to bind mounts
-    + Re-upload snapshots for some reason to fix Snadbox flow
+    + Re-upload snapshots for some reason to fix Sandbox flow
 - 3/23/23
     + Add CAM on port 6080
 - 2/15/23
     + remove parabank volume
-    + add parabank/init.sh and demoa-pp/init.sh
+    + add parabank/init.sh and demo-app/init.sh
 - 1/25/23
     + CTP/SOAVirt 2022.2 -> 2022.2.1
     + Fix "Validte Demo VM Job"

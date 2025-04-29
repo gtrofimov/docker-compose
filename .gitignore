@@ -2,7 +2,8 @@
 datarepo/**
 ctp/**
 parabank/parabank
-parabank/monitor
+parabank/agent
 parabank/jdbc
 soavirt/**
 *backup*
+ltc/**

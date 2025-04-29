@@ -10,9 +10,15 @@ services:
     networks:
       - demo-net
     ports:
+<<<<<<< HEAD
       - 8080:8080
       - 8443:8443
       - 9009:9002
+=======
+      - 8080:8080 # HTTP
+      - 8443:8443 # HTTPS
+      - 9009:9002 # HSQLDB
+>>>>>>> 21c951f (updates)
     environment:
       ACCEPT_EULA: true
       LICENSE_SERVER_URL: "${ls_url}"
@@ -43,11 +49,19 @@ services:
     networks:
       - demo-net
     ports:
+<<<<<<< HEAD
       - 9080:9080
       - 9443:9443
       - 9617:9617
       - 9618:9618
       - 9090-9099:9090-9099
+=======
+      - 9080:9080 # HTTP
+      - 9443:9443 # HTTPS
+      - 9617:9617 # Events Monitoring
+      - 9618:9618 # Hit Statistics
+      - 9090-9099:9090-9099 # Custom listeners
+>>>>>>> 21c951f (updates)
     environment:
       ACCEPT_EULA: "true"
       HTTP_PORT: 9080
@@ -72,7 +86,7 @@ services:
     networks:
       - demo-net
     ports:
-      - "2424:2424"
+      - "2424:2424" # TCP
     environment:
       USERNAME: ${dr_user}
       PASSWORD: ${dr_pass}
@@ -85,7 +99,7 @@ services:
         source: datarepo/repositories
         target: /usr/local/parasoft/datarepo/repositories
   parabank:
-    image: parasoft/parabank:latest
+    build: parabank
     restart: unless-stopped
     container_name: parabank
     hostname: parabank
@@ -95,10 +109,10 @@ services:
     networks:
       - demo-net
     ports:
-      - 8090:8080
-      - 9001:9001
-      - 61616:61616
-      - 8050:8050
+      - 8090:8080 # HTTP
+      - 9001:9001 # HSQLDB
+      - 61616:61616 # JMS
+      - 8050:8050 # Cov Agent
     env_file:
       - ./parabank/catalina.env
     volumes:
@@ -109,8 +123,8 @@ services:
         source: parabank/jdbc/ParasoftJDBCDriver.jar
         target: /usr/local/tomcat/webapps/parabank/WEB-INF/lib/ParasoftJDBCDriver.jar
       - type: bind
-        source: parabank/monitor
-        target: /home/docker/jtest/monitor
+        source: parabank/agent/runtime_coverage
+        target: /usr/local/tomcat/agent/runtime_coverage
   parabankv2:
     image: parasoft/parabank:feature
     restart: unless-stopped
@@ -121,9 +135,15 @@ services:
     networks:
       - demo-net
     ports:
+<<<<<<< HEAD
       - 8091:8080
       - 9004:9001
       - 61617:61616
+=======
+      - 8091:8080 # HTTP
+      - 9004:9001 # HSQLDB
+      - 61617:61616 # JMS
+>>>>>>> 21c951f (updates)
   demo-app:
     image: parasoft/demo-app:latest
     restart: unless-stopped
@@ -134,12 +154,32 @@ services:
     networks:
       - demo-net
     ports:
-      - 4040:8080
-      - 9003:9001
-      - 50051:50051
-      - 61623:61623
-      - 61624:62624
-      - 61626:61626
+      - 4040:8080 # HTTP
+      - 9003:9001 # HSQLDB
+      - 50051:50051 # Rabbit MQ
+      - 61623:61623 # Broker 1
+      - 61624:62624 # Broker 2
+      - 61626:61626 # Broker 3
+  ltc:
+    build: ltc
+    restart: unless-stopped
+    container_name: ltc
+    hostname: ltc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - demo-net
+    ports:
+      - 7080:8080 # HTTP
+    #environment:
+    #  CATALINA_OPTS: "${CATALINA_OPTS} -Duser.country=US -Duser.language=en"
+    volumes:
+      - type: bind
+        source: ltc/data
+        target: /usr/local/tomcat/data
+    #  - type: bind
+    #    source: ltc/web.xml
+    #    target: /usr/local/tomcat/webapps/ltc/WEB-INF/web.xml
 networks:
   demo-net:
     external: true
