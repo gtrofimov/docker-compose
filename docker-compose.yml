@@ -10,15 +10,9 @@ services:
     networks:
       - demo-net
     ports:
-<<<<<<< HEAD
-      - 8080:8080
-      - 8443:8443
-      - 9009:9002
-=======
       - 8080:8080 # HTTP
       - 8443:8443 # HTTPS
       - 9009:9002 # HSQLDB
->>>>>>> 21c951f (updates)
     environment:
       ACCEPT_EULA: true
       LICENSE_SERVER_URL: "${ls_url}"
@@ -49,19 +43,11 @@ services:
     networks:
       - demo-net
     ports:
-<<<<<<< HEAD
-      - 9080:9080
-      - 9443:9443
-      - 9617:9617
-      - 9618:9618
-      - 9090-9099:9090-9099
-=======
       - 9080:9080 # HTTP
       - 9443:9443 # HTTPS
       - 9617:9617 # Events Monitoring
       - 9618:9618 # Hit Statistics
       - 9090-9099:9090-9099 # Custom listeners
->>>>>>> 21c951f (updates)
     environment:
       ACCEPT_EULA: "true"
       HTTP_PORT: 9080
@@ -135,15 +121,9 @@ services:
     networks:
       - demo-net
     ports:
-<<<<<<< HEAD
-      - 8091:8080
-      - 9004:9001
-      - 61617:61616
-=======
       - 8091:8080 # HTTP
       - 9004:9001 # HSQLDB
       - 61617:61616 # JMS
->>>>>>> 21c951f (updates)
   demo-app:
     image: parasoft/demo-app:latest
     restart: unless-stopped
