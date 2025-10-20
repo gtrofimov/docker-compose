@@ -78,9 +78,11 @@ The following demos are availble and preconfigured on this demo VM
 * ncdu: https://www.cyberciti.biz/open-source/install-ncdu-on-linux-unix-ncurses-disk-usage/
 
 ## Changelog
-<<<<<<< HEAD
-- 11/08/24
-=======
+- 10/20/25
+    + Upgrade CTP/SOAVirt/agents to 2025.3
+    - remove LTC
+    - remove Admin system in CTP
+    + rename Parabank systems to DEV > QA > SIT > UAT > PROD conventions
 - 4/29/25
     + added LTC
     + upgraded to 2025.1
@@ -89,7 +91,6 @@ The following demos are availble and preconfigured on this demo VM
     + removed unnecessary Loan Processor assets
     + renamed ProxyBank_Learn -> ParabankLearn and updated relevant paths
 - 11/8/24
->>>>>>> 21c951f (updates)
     + Added Parabank Learning Mode workflow to CTP/EM & Virtualize Server
     + Modified Parabank init.sh to include REST Endpoint for Virtualize proxy
     + Consolidated Loan Processor workflow with CRUD workflow to support REST Endpoint, all working through the Retail Component, the Loan Processor Component is now just for show.  
