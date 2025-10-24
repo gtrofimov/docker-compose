@@ -83,6 +83,8 @@ The following demos are availble and preconfigured on this demo VM
     - remove LTC
     - remove Admin system in CTP
     + rename Parabank systems to DEV > QA > SIT > UAT > PROD conventions
+    + updated Location.pva to support /regions.
+    + Parabank:feature deployed with cov agent on 8051
 - 4/29/25
     + added LTC
     + upgraded to 2025.1
